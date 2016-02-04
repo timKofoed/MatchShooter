@@ -34,15 +34,32 @@ public class SceneController : MonoBehaviour {
     private float startBreddeForLivBar;
     private int startLiv;
 
+    private Coroutine objektGenerator;
+
+    public Button pressToStart;
+
     // Use this for initialization
     void Start () {
-        StartCoroutine( LavObjektInterval() );
-        
-        // Husk hvor bred liv-baren var da vi startede
-        startBreddeForLivBar = livFelt.GetComponent<RectTransform>().sizeDelta.x;
+        RestartLevel();
+        Debug.Log("Time.fixedDeltaTime: " + Time.fixedDeltaTime);
+    }
 
-        // Husk hvor mange liv vi havde da vi startede
-        startLiv = liv;     
+    public bool ErSpilletAktivt()
+    {
+        if (pressToStart.gameObject.activeSelf)
+            return false;
+        else
+            return true;
+    }
+
+    public void PauseKnapTrykket()
+    {
+        // Hvis tiden går hurtigere end "meget langsom", så stop tiden
+        if (Time.timeScale > 0.001f)
+            Time.timeScale = 0.001f;
+        else //...ellers sæt tiden tilbage til standarden
+            Time.timeScale = 1.0f;
+        
     }
 	
     /// <summary>
@@ -172,6 +189,49 @@ public class SceneController : MonoBehaviour {
     public void MistLiv()
     {
         liv -= 1;
+
+        if (liv <= 0)
+            GameOver();
+    }
+
+    public void GameOver()
+    {
+        // Hvis objekt generatoren allerede kører, så stop den
+        if (objektGenerator != null)
+            StopCoroutine(objektGenerator);
+
+        // Vi bør vise Highscore og skrive navn
+
+        // Så tryk på knap for at starte spillet igen
+
+        // DEBUG: reset med det samme
+        //RestartLevel();
+        pressToStart.gameObject.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        // Hvis objekt generatoren allerede kører, så stop den
+        if (objektGenerator != null)
+            StopCoroutine( objektGenerator );
+
+        pressToStart.gameObject.SetActive(false);
+
+        // Begynd at lave objekter i et interval
+        objektGenerator = StartCoroutine(LavObjektInterval());
+
+        // Husk hvor bred liv-baren var da vi startede
+        if (startBreddeForLivBar == 0.0f)
+            startBreddeForLivBar = livFelt.GetComponent<RectTransform>().sizeDelta.x;
+        else
+            livFelt.GetComponent<RectTransform>().sizeDelta = 
+                new Vector2( startBreddeForLivBar, livFelt.GetComponent<RectTransform>().sizeDelta.y);
+
+        // Husk hvor mange liv vi havde da vi startede
+        if (startLiv == 0)
+            startLiv = liv;
+        else
+            liv = startLiv;
     }
 
     public bool HarTrykketPaaObjekt(ObjektType objektViTrykkedePaa)
