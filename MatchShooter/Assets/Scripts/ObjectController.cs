@@ -23,8 +23,12 @@ public class ObjectController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if ( !controller.ErSpilletAktivt() )
-            Destroy( this.gameObject );
+        if (!controller.ErSpilletAktivt())
+        {
+            Debug.Log("Spillet er IKKE aktivt. Slet (" + this.gameObject.name + ")");
+            Destroy(this.gameObject);
+        }
+            
 
         // Ved hver update, ryk dette objekt ned med værdien i "hastighed"
         objekt.transform.position = new Vector3(objekt.transform.position.x,

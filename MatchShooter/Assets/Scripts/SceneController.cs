@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour {
     public int liv = 5;
     public int score = 0;
     public ObjektType valgteObjektType = ObjektType.objekt1;
+    public HighScoreScript highscoreScript;
 
     public Button knap1;
     public Button knap2;
@@ -44,9 +45,10 @@ public class SceneController : MonoBehaviour {
         Debug.Log("Time.fixedDeltaTime: " + Time.fixedDeltaTime);
     }
 
+    // Når spillet ikke er aktivt, så fjern alle aktive objekter på skærmen
     public bool ErSpilletAktivt()
     {
-        if (pressToStart.gameObject.activeSelf)
+        if (pressToStart.gameObject.activeSelf || highscoreScript.isActiveAndEnabled)
             return false;
         else
             return true;
@@ -55,8 +57,8 @@ public class SceneController : MonoBehaviour {
     public void PauseKnapTrykket()
     {
         // Hvis tiden går hurtigere end "meget langsom", så stop tiden
-        if (Time.timeScale > 0.001f)
-            Time.timeScale = 0.001f;
+        if (Time.timeScale > 0.0f)
+            Time.timeScale = 0.0f;
         else //...ellers sæt tiden tilbage til standarden
             Time.timeScale = 1.0f;
         
@@ -201,12 +203,31 @@ public class SceneController : MonoBehaviour {
             StopCoroutine(objektGenerator);
 
         // Vi bør vise Highscore og skrive navn
+        StartCoroutine(StartHighscore(score, ""));
 
         // Så tryk på knap for at starte spillet igen
 
         // DEBUG: reset med det samme
         //RestartLevel();
-        pressToStart.gameObject.SetActive(true);
+
+        //Vent med at vise "Press to start" indtil vi har indsat vores navn i Highscore feltet
+        //pressToStart.gameObject.SetActive(true);
+    }
+
+    private IEnumerator StartHighscore(int playerScore, string playerName)
+    {
+        // Tænd for highscore scriptet
+        if (!highscoreScript.gameObject.activeSelf)
+            highscoreScript.gameObject.SetActive(true);
+
+        // Vent en update-cyklus, så HighscoreScript´et har tid til at kalde Start()
+        yield return new WaitForEndOfFrame();
+
+        // Opdatér highscore felterne til de nyeste FØR vi viser den
+        highscoreScript.UpdateScoreTextFields();
+
+        // Send vores nye score til highscoreScript´et
+        highscoreScript.UpdateScoreOnDisk(playerScore, playerName);
     }
 
     public void RestartLevel()
@@ -215,7 +236,11 @@ public class SceneController : MonoBehaviour {
         if (objektGenerator != null)
             StopCoroutine( objektGenerator );
 
+        // Sørg for at PressToStart´en er slukket, hvis nu den var tændt da spillet startede
         pressToStart.gameObject.SetActive(false);
+
+        // Sørg for at Highscore´en er slukket, hvis nu den var tændt da spillet startede
+        highscoreScript.gameObject.SetActive(false);
 
         // Begynd at lave objekter i et interval
         objektGenerator = StartCoroutine(LavObjektInterval());
@@ -226,6 +251,8 @@ public class SceneController : MonoBehaviour {
         else
             livFelt.GetComponent<RectTransform>().sizeDelta = 
                 new Vector2( startBreddeForLivBar, livFelt.GetComponent<RectTransform>().sizeDelta.y);
+
+        score = 0;
 
         // Husk hvor mange liv vi havde da vi startede
         if (startLiv == 0)

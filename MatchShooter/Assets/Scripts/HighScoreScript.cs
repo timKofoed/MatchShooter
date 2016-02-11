@@ -47,6 +47,7 @@ public class HighScoreScript : MonoBehaviour
 	private string[] highScoresOnDisk;          //An array of the strings we defined above to find the highscore scores on disk
 
     public InputField inputNameFromUser;    // The InputField in which the user will give his name, when we´ve beaten a score
+    public GameObject touchToStart;     // The GameObject which starts the game
 
 	void Start () 
 	{
@@ -239,6 +240,17 @@ public class HighScoreScript : MonoBehaviour
         //update the scores in the visual Text fields on screen first, because it's faster to do
         UpdateScoreTextFields();
 
+        ResumeGame();
+    }
+
+    private void ResumeGame()
+    {
+        // Activate the button to restart the game
+        if (touchToStart != null)
+            touchToStart.SetActive(true);
+
+        // Hide the highscore and all highscore fields
+        this.gameObject.SetActive(false);
     }
 
 	public bool didWeBeatTheScore(int scoreIndexToCheck, int newScore)
@@ -323,6 +335,9 @@ public class HighScoreScript : MonoBehaviour
         UpdateScoreTextFields();
 
         scoreFieldToUpdate = null;
+
+        // Fjern det navn fra input-feltet som vi lige har skrevet
+        otherField.text = "";
 
         // Disable the inputField
         //otherField.gameObject.SetActive(false);
