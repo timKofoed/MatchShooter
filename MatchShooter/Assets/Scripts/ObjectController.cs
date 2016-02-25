@@ -28,7 +28,6 @@ public class ObjectController : MonoBehaviour {
             Debug.Log("Spillet er IKKE aktivt. Slet (" + this.gameObject.name + ")");
             Destroy(this.gameObject);
         }
-            
 
         // Ved hver update, ryk dette objekt ned med værdien i "hastighed"
         objekt.transform.position = new Vector3(objekt.transform.position.x,
@@ -51,11 +50,15 @@ public class ObjectController : MonoBehaviour {
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
-        // Kald funktionen HarRamtBunden, som gør det der skal gøres nu
-        HarRamtBunden();
+        if (other.tag == "Bund")
+        {
+            // Kald funktionen HarRamtBunden, som gør det der skal gøres nu
+            HarRamtBunden();
 
-        // Slet dette GameObject, fordi vi nu er færdige med det
-        Destroy(this.gameObject);
+            // Fjern dette objekt fra spillet
+            controller.RemoveObject(this.gameObject);
+           
+        }
     }
 
     /// <summary>
@@ -64,11 +67,10 @@ public class ObjectController : MonoBehaviour {
     void OnMouseDown()
     {
         // Hvis sceneControlleren´s valgteObjekt er det samme som minType, så slet dette objekt
-        if(controller.HarTrykketPaaObjekt(minType) )    // Denne funktion giver også point
+        if(controller.HarTrykketPaaObjekt(minType, this.gameObject) )    // Denne funktion giver også point
         {
-            Destroy(this.gameObject);
+            controller.RemoveObject(this.gameObject);
         }
-        
     }
 
     // Use this for initialization
@@ -79,15 +81,19 @@ public class ObjectController : MonoBehaviour {
         mitMaterial = new Material( this.gameObject.GetComponent<Renderer>().material );
 
         if (minType == ObjektType.objekt1)
-            mitMaterial.color = Color.blue;
+            mitMaterial.color = controller.knap1Tryk;
         else if (minType == ObjektType.objekt2)
-            mitMaterial.color = Color.red;
+            mitMaterial.color = controller.knap2Tryk;
         else if (minType == ObjektType.objekt3)
-            mitMaterial.color = Color.black;
+            mitMaterial.color = controller.knap3Tryk;
         else if (minType == ObjektType.objekt4)
-            mitMaterial.color = Color.yellow;
+            mitMaterial.color = controller.knap4Tryk;
         else
             Debug.LogError("Jeg kender ikke typen " + minType);
+
+        // også sæt objectet til at udstråle den valgte farve
+        Color emissiveColor = new Color(mitMaterial.color.r / 2.0f, mitMaterial.color.g / 2.0f, mitMaterial.color.b / 2.0f);
+        mitMaterial.SetColor("_EmissionColor", emissiveColor);
 
         this.gameObject.GetComponent<Renderer>().material = mitMaterial;
     }

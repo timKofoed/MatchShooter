@@ -40,14 +40,14 @@ public class SidewaysPulseScript : MonoBehaviour {
         //Checks if this Objects current position is greater than than "PulseMax"
         if (myTransform.position.x > pulseMax)
         {
-            Debug.Log("Change direction moving left");
+            //Debug.Log("Change direction moving left");
             pulseDirection = -pulseSpeed;
         }
 
         //Checks if this Objects current position is less than than "pulseMin"
         else if (myTransform.position.x < pulseMin)
         {
-            Debug.Log("Change direction moving right");
+            //Debug.Log("Change direction moving right");
             pulseDirection = pulseSpeed;
         }
 

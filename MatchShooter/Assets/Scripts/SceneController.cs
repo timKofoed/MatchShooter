@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;   // UI elementer i Canvas
 
 public enum ObjektType
@@ -18,10 +19,25 @@ public class SceneController : MonoBehaviour {
     public ObjektType valgteObjektType = ObjektType.objekt1;
     public HighScoreScript highscoreScript;
 
+    public GameObject environmentRoot;
+
     public Button knap1;
     public Button knap2;
     public Button knap3;
     public Button knap4;
+
+    public Color knap1Normal;
+    public Color knap1Tryk;
+    public Color knap2Normal;
+    public Color knap2Tryk;
+    public Color knap3Normal;
+    public Color knap3Tryk;
+    public Color knap4Normal;
+    public Color knap4Tryk;
+
+    public Gradient gradientLiv;
+
+    private List<Transform> fallingObjects;
 
     // Det preview i øverst venstre hjørne, som viser hvad vi har trykket på lige nu
     public GameObject objekt1Preview;
@@ -38,11 +54,46 @@ public class SceneController : MonoBehaviour {
     private Coroutine objektGenerator;
 
     public Button pressToStart;
+    public GameObject playerGun;
 
     // Use this for initialization
     void Start () {
         RestartLevel();
         Debug.Log("Time.fixedDeltaTime: " + Time.fixedDeltaTime);
+
+        // Når vi starter spillet skal vi sørge for at alle knapperne er farvet korrekt
+        ColorBlock knap1Farve = knap1.colors;
+        knap1Farve.normalColor = knap1Normal;
+        knap1.colors = knap1Farve;
+        knap1.GetComponent<Image>().color = knap1Normal;
+
+        ColorBlock knap2Farve = knap2.colors;
+        knap2Farve.normalColor = knap2Normal;
+        knap2.colors = knap2Farve;
+        knap2.GetComponent<Image>().color = knap2Normal;
+
+        ColorBlock knap3Farve = knap3.colors;
+        knap3Farve.normalColor = knap3Normal;
+        knap3.colors = knap3Farve;
+        knap3.GetComponent<Image>().color = knap3Normal;
+
+        ColorBlock knap4Farve = knap4.colors;
+        knap4Farve.normalColor = knap4Normal;
+        knap4.colors = knap4Farve;
+        knap4.GetComponent<Image>().color = knap4Normal;
+
+        StartCoroutine(RotateEnvironment());
+
+    }
+
+    private IEnumerator RotateEnvironment()
+    {
+        while(true)
+        {
+            environmentRoot.transform.Rotate(0.0f, 0.01f, 0.0f);
+            yield return new WaitForEndOfFrame();
+        }
+        
     }
 
     // Når spillet ikke er aktivt, så fjern alle aktive objekter på skærmen
@@ -77,104 +128,104 @@ public class SceneController : MonoBehaviour {
 
             // Tænd for knap1 farven
             ColorBlock newColour1 = knap1.colors;
-            newColour1.normalColor = Color.blue;
+            newColour1.normalColor = knap1Tryk;
             knap1.colors = newColour1;
-            knap1.GetComponent<Image>().color = Color.blue;
-            objekt1Preview.GetComponent<Image>().color = Color.blue;
+            knap1.GetComponent<Image>().color = knap1Tryk;
+            objekt1Preview.GetComponent<Image>().color = knap1Tryk;
 
             // Gør de andre knapper hvide
             ColorBlock newColour2 = knap2.colors;
-            newColour2.normalColor = Color.white;
+            newColour2.normalColor = knap2Normal;
             knap2.colors = newColour2;
-            knap2.GetComponent<Image>().color = Color.white;
+            knap2.GetComponent<Image>().color = knap2Normal;
 
             ColorBlock newColour3 = knap3.colors;
-            newColour3.normalColor = Color.white;
+            newColour3.normalColor = knap3Normal;
             knap3.colors = newColour3;
-            knap3.GetComponent<Image>().color = Color.white;
+            knap3.GetComponent<Image>().color = knap3Normal;
 
             ColorBlock newColour4 = knap4.colors;
-            newColour4.normalColor = Color.white;
+            newColour4.normalColor = knap4Normal;
             knap4.colors = newColour4;
-            knap4.GetComponent<Image>().color = Color.white;
+            knap4.GetComponent<Image>().color = knap4Normal;
         }
         else if (valgteObjektType == ObjektType.objekt2)
         {
             // Vi har trykket på Objekt2 i siden af skærmen
 
             ColorBlock newColour1 = knap1.colors;
-            newColour1.normalColor = Color.white;
+            newColour1.normalColor = knap1Normal;
             knap1.colors = newColour1;
-            knap1.GetComponent<Image>().color = Color.white;
+            knap1.GetComponent<Image>().color = knap1Normal;
 
             // Tænd for knap2 farven
             ColorBlock newColour2 = knap2.colors;
-            newColour2.normalColor = Color.red;
+            newColour2.normalColor = knap2Tryk;
             knap2.colors = newColour2;
-            knap2.GetComponent<Image>().color = Color.red;
-            objekt1Preview.GetComponent<Image>().color = Color.red;
+            knap2.GetComponent<Image>().color = knap2Tryk;
+            objekt1Preview.GetComponent<Image>().color = knap2Tryk;
 
             ColorBlock newColour3 = knap3.colors;
-            newColour3.normalColor = Color.white;
+            newColour3.normalColor = knap3Normal;
             knap3.colors = newColour3;
-            knap3.GetComponent<Image>().color = Color.white;
+            knap3.GetComponent<Image>().color = knap3Normal;
 
             ColorBlock newColour4 = knap4.colors;
-            newColour4.normalColor = Color.white;
+            newColour4.normalColor = knap4Normal;
             knap4.colors = newColour4;
-            knap4.GetComponent<Image>().color = Color.white;
+            knap4.GetComponent<Image>().color = knap4Normal;
         }
         else if (valgteObjektType == ObjektType.objekt3)
         {
             // Vi har trykket på Objekt3 i siden af skærmen
 
             ColorBlock newColour1 = knap1.colors;
-            newColour1.normalColor = Color.white;
+            newColour1.normalColor = knap1Normal;
             knap1.colors = newColour1;
-            knap1.GetComponent<Image>().color = Color.white;
+            knap1.GetComponent<Image>().color = knap1Normal;
 
             ColorBlock newColour2 = knap2.colors;
-            newColour2.normalColor = Color.white;
+            newColour2.normalColor = knap2Normal;
             knap2.colors = newColour2;
-            knap2.GetComponent<Image>().color = Color.white;
+            knap2.GetComponent<Image>().color = knap2Normal;
 
             // Tænd for knap3 farven
             ColorBlock newColour3 = knap3.colors;
-            newColour3.normalColor = Color.black;
+            newColour3.normalColor = knap3Tryk;
             knap3.colors = newColour3;
-            knap3.GetComponent<Image>().color = Color.black;
-            objekt1Preview.GetComponent<Image>().color = Color.black;
+            knap3.GetComponent<Image>().color = knap3Tryk;
+            objekt1Preview.GetComponent<Image>().color = knap3Tryk;
 
             ColorBlock newColour4 = knap4.colors;
-            newColour4.normalColor = Color.white;
+            newColour4.normalColor = knap4Normal;
             knap4.colors = newColour4;
-            knap4.GetComponent<Image>().color = Color.white;
+            knap4.GetComponent<Image>().color = knap4Normal;
         }
         else if (valgteObjektType == ObjektType.objekt4)
         {
             // Vi har trykket på Objekt4 i siden af skærmen
 
             ColorBlock newColour1 = knap1.colors;
-            newColour1.normalColor = Color.white;
+            newColour1.normalColor = knap1Normal;
             knap1.colors = newColour1;
-            knap1.GetComponent<Image>().color = Color.white;
+            knap1.GetComponent<Image>().color = knap1Normal;
 
             ColorBlock newColour2 = knap2.colors;
-            newColour2.normalColor = Color.white;
+            newColour2.normalColor = knap2Normal;
             knap2.colors = newColour2;
-            knap2.GetComponent<Image>().color = Color.white;
+            knap2.GetComponent<Image>().color = knap2Normal;
 
             ColorBlock newColour3 = knap3.colors;
-            newColour3.normalColor = Color.white;
+            newColour3.normalColor = knap3Normal;
             knap3.colors = newColour3;
-            knap3.GetComponent<Image>().color = Color.white;
+            knap3.GetComponent<Image>().color = knap3Normal;
 
             // Tænd for knap4 farven
             ColorBlock newColour4 = knap4.colors;
-            newColour4.normalColor = Color.yellow;
+            newColour4.normalColor = knap4Tryk;
             knap4.colors = newColour4;
-            knap4.GetComponent<Image>().color = Color.yellow;
-            objekt1Preview.GetComponent<Image>().color = Color.yellow;
+            knap4.GetComponent<Image>().color = knap4Tryk;
+            objekt1Preview.GetComponent<Image>().color = knap4Tryk;
         }
     }
 
@@ -183,9 +234,23 @@ public class SceneController : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds( Random.Range(1.0f, 2.5f) );
-            GameObject.Instantiate(fallendeObjektPrefab, startPosition.position, startPosition.rotation);
+
+            if (fallingObjects == null)
+                fallingObjects = new List<Transform>();
+
+            // Lav et nyt objekt af vores prefab (og sørg for at det er tændt)
+            fallingObjects.Add( (GameObject.Instantiate(fallendeObjektPrefab, startPosition.position, startPosition.rotation) as GameObject).transform);
+
+            fallingObjects[fallingObjects.Count-1].gameObject.SetActive(true);
         }
-        
+    }
+
+    public void RemoveObject(GameObject objectToRemove)
+    {
+        fallingObjects.Remove(objectToRemove.transform);
+
+        // Slet det GameObject, fordi vi nu er færdige med det
+        Destroy(objectToRemove);
     }
 
     public void MistLiv()
@@ -261,10 +326,13 @@ public class SceneController : MonoBehaviour {
             liv = startLiv;
     }
 
-    public bool HarTrykketPaaObjekt(ObjektType objektViTrykkedePaa)
+    public bool HarTrykketPaaObjekt(ObjektType objektViTrykkedePaa, GameObject objekt)
     {
-        if (objektViTrykkedePaa == valgteObjektType)
+        // Hvis vi har trykket på den rigtige objekttype, og spillet ikke er pauset, så giv point
+        if ((objektViTrykkedePaa == valgteObjektType) && (Time.timeScale > 0.0f))
         {
+            playerGun.transform.LookAt(objekt.transform);
+
             score += 5;
             return true;
         }
@@ -282,5 +350,6 @@ public class SceneController : MonoBehaviour {
 
         // Vi ændrer livFeltet´s sizeDelta.x (bredde) til en procentdel af hvor mange liv vi har tilbage
         livFelt.GetComponent<RectTransform>().sizeDelta = new Vector2( ((float)liv/ (float)startLiv)*startBreddeForLivBar , 50f);
+        livFelt.GetComponent<Image>().color = gradientLiv.Evaluate( 1.0f - ((float)liv / (float)startLiv)) ;
     }
 }
