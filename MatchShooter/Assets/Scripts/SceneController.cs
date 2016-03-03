@@ -54,12 +54,20 @@ public class SceneController : MonoBehaviour {
     private Coroutine objektGenerator;
 
     public Button pressToStart;
+
     public GameObject playerGun;
+    public Transform playerGunLookAt;
+    private GameObject objectToLookAt;  //Gem en reference til det fallende objekt som våbnet skal kigge på
+    private Quaternion gunPreviousOrientation; //Husk hvor våbnet pegede hen før vi startede med at dreje det
+    private float gunTransition = -1.0f; //en værdi vi bruger til at holde styr på hvor langt våbnet har drejet imod objektet (bruges af en Lerp)
+    private GunController gunController;
 
     // Use this for initialization
     void Start () {
         RestartLevel();
         Debug.Log("Time.fixedDeltaTime: " + Time.fixedDeltaTime);
+
+        gunController = playerGun.GetComponent<GunController>();
 
         // Når vi starter spillet skal vi sørge for at alle knapperne er farvet korrekt
         ColorBlock knap1Farve = knap1.colors;
@@ -90,7 +98,7 @@ public class SceneController : MonoBehaviour {
     {
         while(true)
         {
-            environmentRoot.transform.Rotate(0.0f, 0.01f, 0.0f);
+            environmentRoot.transform.Rotate(0.0f, 0.015f, 0.0f);
             yield return new WaitForEndOfFrame();
         }
         
@@ -331,7 +339,20 @@ public class SceneController : MonoBehaviour {
         // Hvis vi har trykket på den rigtige objekttype, og spillet ikke er pauset, så giv point
         if ((objektViTrykkedePaa == valgteObjektType) && (Time.timeScale > 0.0f))
         {
-            playerGun.transform.LookAt(objekt.transform);
+            // Vi gemmer en reference til det objekt vi vil kigge på, så vi kan blive ved med at pege på det
+            objectToLookAt = objekt;
+
+            playerGunLookAt.LookAt(objekt.transform);
+
+            //nulstil værdien vi bruger til at dreje våbnet
+            gunTransition = 0.0f;
+
+            // Husk hvor våbnet pegede hen da vi trykkede på et objekt
+            gunPreviousOrientation = playerGun.transform.rotation;
+
+            // Begynd at rotér våbnet
+            if(gunController != null)
+                gunController.StartShooting();
 
             score += 5;
             return true;
@@ -343,8 +364,33 @@ public class SceneController : MonoBehaviour {
         
     }
 
+    void FixedUpdate()
+    {
+        // Vi har en reference til et objekt som vi vil pege våbnet imod
+        if(gunTransition <= 1.0f && gunTransition >= 0.0f)
+        {
+            // Vi bruger den lille Transform til at pege på det objekt vi vil sigte imod, så vi véd hvor våbnet skal pege hen til sidst
+            //playerGunLookAt.LookAt(objectToLookAt.transform);
+
+            playerGun.transform.rotation = Quaternion.Lerp(gunPreviousOrientation, playerGunLookAt.rotation, gunTransition);
+
+            
+
+            //forøg værdien vi bruger til at dreje våbnet
+            gunTransition += 0.1f;
+        }
+        else if(gunTransition >= 1.0f)
+        {
+            // reset
+            gunTransition = -1.0f;
+            gunController.StopShooting();
+        }
+
+    }
+
 	// Update is called once per frame
 	void Update () {
+
         // Sæt vores score ind på score-feltet på skærmen
         scoreFelt.text = score.ToString();
 
