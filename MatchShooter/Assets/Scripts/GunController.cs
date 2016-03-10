@@ -7,12 +7,33 @@ public class GunController : MonoBehaviour {
     public List<GameObject> guns;
     private GameObject gunActive;
 
-    private bool isShooting = false;
+    [SerializeField]
+    private Transform projectileEnd;
 
+    private bool isShooting = false;
+    private static float damageDealing = 1.0f;
+
+    public void SetDamagePotential(float damage)
+    {
+        GunController.damageDealing = damage;
+    }
+
+    public static void TargetHit(GameObject objectHit)
+    {
+        if(objectHit.tag == "TargetToHit")
+        {
+            //Debug.Log("Target hit: " + objectHit.name + " damage: " + damageDealing);
+            objectHit.BroadcastMessage("TagSkade", damageDealing, SendMessageOptions.DontRequireReceiver);
+        }
+        
+
+    }
+
+    // Send the target position via the broadcast, so the guns themselves can decide when and how to instantiate their projectiles
     public void StartShooting()
     {
         if (gunActive != null)
-            gunActive.BroadcastMessage("StartShooting");
+            gunActive.BroadcastMessage("StartShooting", projectileEnd);
     }
 
     public void StopShooting()
@@ -27,6 +48,12 @@ public class GunController : MonoBehaviour {
         SelectGun(1);
     }
 	
+    public void SetProjectileEndPosition(Transform endPos)
+    {
+        if(projectileEnd != null && endPos != null)
+            projectileEnd.position = endPos.position;
+    }
+
     public void SelectGun(int gunIndex = 0)
     {
         // Hvis vi har en liste af våben, og der er mindst ét våben, så kan vi kigge i listen

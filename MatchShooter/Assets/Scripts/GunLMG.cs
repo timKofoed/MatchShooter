@@ -18,7 +18,7 @@ public class GunLMG : MonoBehaviour {
             gunGraphic.transform.Rotate(Vector3.up, 10.0f); //Rotér rundt om Y-aksen
     }
 
-    public void StartShooting()
+    public void StartShooting(Transform targetPos = null)
     {
         isShooting = true;
 

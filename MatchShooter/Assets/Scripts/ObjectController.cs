@@ -21,6 +21,10 @@ public class ObjectController : MonoBehaviour {
     // Den material som er på dette objekt, som vi ændrer farven på
     private Material mitMaterial;
 
+    // Hvor meget liv dette objekt har
+    [SerializeField]
+    private float health = 10.0f;
+
     void FixedUpdate()
     {
         if (!controller.ErSpilletAktivt())
@@ -33,6 +37,16 @@ public class ObjectController : MonoBehaviour {
         objekt.transform.position = new Vector3(objekt.transform.position.x,
                                                 objekt.transform.position.y - hastighed,
                                                 objekt.transform.position.z);
+    }
+
+    public void TagSkade(float skade)
+    {
+        health -= skade;
+
+        if(health <= 0.0f)
+        {
+            controller.RemoveObject(this.gameObject);
+        }
     }
 
     /// <summary>
@@ -67,10 +81,10 @@ public class ObjectController : MonoBehaviour {
     void OnMouseDown()
     {
         // Hvis sceneControlleren´s valgteObjekt er det samme som minType, så slet dette objekt
-        if(controller.HarTrykketPaaObjekt(minType, this.gameObject) )    // Denne funktion giver også point
+        /*if(controller.HarTrykketPaaObjekt(minType, this.gameObject) )    // Denne funktion giver også point
         {
             controller.RemoveObject(this.gameObject);
-        }
+        }*/
     }
 
     // Use this for initialization

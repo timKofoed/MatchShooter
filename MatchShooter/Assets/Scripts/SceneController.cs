@@ -11,6 +11,14 @@ public enum ObjektType
     objekt4 = 4
 }
 
+public enum WeaponType
+{
+    vulcan = 0,
+    nr2 = 1,
+    nr3 = 2,
+    nr4 = 3
+}
+
 public class SceneController : MonoBehaviour {
     public GameObject fallendeObjektPrefab;
     public Transform startPosition;
@@ -92,6 +100,13 @@ public class SceneController : MonoBehaviour {
 
         StartCoroutine(RotateEnvironment());
 
+        // Quick-fix, so the initial weapon has proper damage, before we press any of the buttons in the side
+        SetDamagePotential(10.0f);
+    }
+
+    public void SetDamagePotential(float damage)
+    {
+        gunController.SetDamagePotential(damage);
     }
 
     private IEnumerator RotateEnvironment()
@@ -123,6 +138,27 @@ public class SceneController : MonoBehaviour {
         
     }
 	
+    public void SaetValgtVaaben(WeaponType valgtVaaben)
+    {
+        switch (valgtVaaben)
+        {
+            case WeaponType.vulcan:
+                F3DFXController.instance.DefaultFXType = F3DFXType.Vulcan;
+                break;
+            case WeaponType.nr2:
+                F3DFXController.instance.DefaultFXType = F3DFXType.PlasmaGun;
+                break;
+            case WeaponType.nr3:
+                F3DFXController.instance.DefaultFXType = F3DFXType.LightningGun;
+                break;
+            case WeaponType.nr4:
+                F3DFXController.instance.DefaultFXType = F3DFXType.RailGun;
+                break;
+            default:
+                break;
+        }
+    }
+
     /// <summary>
     /// Sæt den valgte værdi og highlight knappen
     /// </summary>
@@ -351,8 +387,13 @@ public class SceneController : MonoBehaviour {
             gunPreviousOrientation = playerGun.transform.rotation;
 
             // Begynd at rotér våbnet
-            if(gunController != null)
+            if (gunController != null)
+            {
+                // Fortæl våbnet hvor fjenden er, så vi kan sende projektiler mod den
+                gunController.SetProjectileEndPosition(objectToLookAt.transform);
                 gunController.StartShooting();
+            }
+                
 
             score += 5;
             return true;

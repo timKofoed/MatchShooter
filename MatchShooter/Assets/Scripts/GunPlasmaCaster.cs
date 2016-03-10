@@ -15,6 +15,16 @@ public class GunPlasmaCaster : MonoBehaviour {
     private float fuelScaleStart;
     private float fuelRemaining = 1.0f;
 
+    // Det projektil som vi vil lave og sende mod fjenden
+    [SerializeField]
+    private GameObject projectilePrefab;
+    private GameObject projectile;
+
+    [SerializeField]
+    private Transform projectileStart;
+    private Transform projectileEnd;
+    private float projectileLerpProgress = -1.0f;   // -1: bruges ikke. 0: start sekvensen. [0..1]: sekvensen er igang
+
     private bool isShooting = false;
 
     private Vector3 localScaleTemp;
@@ -37,11 +47,46 @@ public class GunPlasmaCaster : MonoBehaviour {
                 fuelHolderRight.transform.localScale = localScaleTemp;
         }
         //    gunGraphic.transform.Rotate(Vector3.up, 10.0f); //Rotér rundt om Y-aksen
+
+        if(projectile != null && projectileLerpProgress >= 0)
+        {
+            // vi er færdige, så processen skal nu stoppes, og projektilet skal fjernes (og evt lave en eksplosion)
+            if(projectileLerpProgress >= 1.0f)
+            {
+                projectileLerpProgress = -1.0f;
+                Debug.Log("DESTROY the particle");
+                Destroy(projectile);
+            }
+            else
+            {
+                projectileLerpProgress += Time.deltaTime * 0.01f;
+                projectileLerpProgress = Mathf.Clamp(projectileLerpProgress, 0.0f, 1.0f);   // sørg for at projektilet ikke flyver igennem fjenden
+                projectile.transform.position = Vector3.Lerp(projectileStart.position, projectileEnd.position, projectileLerpProgress); // flyt projektilet
+            }
+           
+        }
     }
 
-    public void StartShooting()
+    public void StartShooting(Transform targetPos = null)
     {
         isShooting = true;
+
+        if (targetPos != null)
+        {
+           /* Debug.Log("Target: " + targetPos.name);
+
+            GameObject projectile = GameObject.Instantiate(projectilePrefab, projectileStart.position, projectileStart.rotation) as GameObject;
+            projectile.transform.SetParent(projectileStart.parent);
+            projectile.transform.localPosition = Vector3.zero;
+            projectile.transform.localScale = Vector3.one;
+            projectileEnd = targetPos;      // remember where the projectile is supposed to hit the target
+            projectileLerpProgress = 0.0f;  // reset the lerp progress
+
+            EditorApplication.isPaused = true;*/
+        }
+            
+
+
 
         //GameObject muzzleFlashObject = (GameObject.Instantiate(muzzleFlashPrefab, muzzleFlashPlacement.transform.position, muzzleFlashPrefab.transform.rotation) as GameObject);
         //muzzleFlashObject.transform.parent = muzzleFlashPlacement.transform;
