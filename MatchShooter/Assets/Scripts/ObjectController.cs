@@ -9,6 +9,9 @@ public class ObjectController : MonoBehaviour {
     // Den hastighed som objektet falder med
     public float hastighed;
 
+    [SerializeField]
+    private Vector3 rotation;
+
     // Det objekt som falder (det objekt dette script sidder på)
     public GameObject objekt;
 
@@ -21,9 +24,24 @@ public class ObjectController : MonoBehaviour {
     // Den material som er på dette objekt, som vi ændrer farven på
     private Material mitMaterial;
 
+    // Hvor dette objekt skal bevæge sig hen imod
+    private Transform slutTransform;
+
+    // husk hvor vi startede, så vi kan lave en Lerp (Linear Interpolation) mod målet
+    private Vector3 startPosition;
+
+    // Hvor langt har vi bevæget os mod målet [0.0 .. 1.0]
+    private float lerpProgress = 0.0f;
+
     // Hvor meget liv dette objekt har
     [SerializeField]
     private float health = 10.0f;
+
+    // Hvor mange sekunder det tager dette objekt at fade-in, i stedet for bare at blinke ind når det bliver lavet
+    [SerializeField]
+    private float fadeInTime = 1.0f;
+    private float fadeInStartTime = 0.0f;
+    private bool isFadingIn = true;
 
     void FixedUpdate()
     {
@@ -33,13 +51,54 @@ public class ObjectController : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        // Ved hver update, ryk dette objekt ned med værdien i "hastighed"
-        objekt.transform.position = new Vector3(objekt.transform.position.x,
-                                                objekt.transform.position.y - hastighed,
-                                                objekt.transform.position.z);
+        // Hvis vi har et mål, så er det det vi går mod. Ellers bevæg objektet nedad
+        if(slutTransform)
+        {
+            lerpProgress += 0.01f * hastighed;
+            this.transform.position = Vector3.Lerp(startPosition, slutTransform.position, lerpProgress);
+        }
+        else
+        {
+            // Ved hver update, ryk dette objekt ned med værdien i "hastighed"
+            objekt.transform.position = new Vector3(objekt.transform.position.x,
+                                                    objekt.transform.position.y - hastighed,
+                                                    objekt.transform.position.z);
+        }
+
+        this.transform.Rotate(rotation);
+
+        if((Time.realtimeSinceStartup < fadeInStartTime + fadeInTime) && isFadingIn)
+        {
+            // fade the object in
+            Color modifiedColor = mitMaterial.color;
+            modifiedColor.a = (Time.realtimeSinceStartup - fadeInStartTime) / fadeInTime;
+            mitMaterial.color = modifiedColor;
+        }
+        else
+        {
+            isFadingIn = false; // stop fading in, and set the transparency to fully visible
+            Color modifiedColor = mitMaterial.color;
+            modifiedColor.a = 1.0f;
+            mitMaterial.color = modifiedColor;
+        }
+        
+
     }
 
-    
+    /// <summary>
+    /// Sæt de ting som dette objekt skal vide, såsom hvor det skal bevæge sig imod.
+    /// </summary>
+    /// <param name="slutPos"></param>
+    public void Init(Transform slutPos)
+    {
+        slutTransform = slutPos;
+        hastighed *= Mathf.Clamp(Random.value, 0.02f, 1.0f);
+
+        rotation = new Vector3( 0.8f * Random.value, 0.8f * Random.value, 0.8f * Random.value);
+        float newScale = Random.value * 1.5f;
+        newScale = Mathf.Clamp(newScale, 0.5f, 2.0f);
+        this.transform.localScale = new Vector3(newScale, newScale, newScale);
+    }
 
     public void TagSkade(float skade)
     {
@@ -112,6 +171,14 @@ public class ObjectController : MonoBehaviour {
         mitMaterial.SetColor("_EmissionColor", emissiveColor);
 
         this.gameObject.GetComponent<Renderer>().material = mitMaterial;
+
+        // Husk hvor vi startede, så vi kan bevæge objektet mod målet
+        startPosition = this.transform.position;
+        lerpProgress = 0.0f;
+        fadeInStartTime = Time.realtimeSinceStartup;
+        Color modifiedColor = mitMaterial.color;
+        modifiedColor.a = 0.0f;
+        mitMaterial.color = modifiedColor;
     }
 	
 	// Update is called once per frame

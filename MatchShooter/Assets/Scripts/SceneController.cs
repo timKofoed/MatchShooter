@@ -21,7 +21,13 @@ public enum WeaponType
 
 public class SceneController : MonoBehaviour {
     public GameObject fallendeObjektPrefab;
-    public Transform startPosition;
+
+    private Vector3 startPosition;
+
+    [SerializeField]
+    private Transform slutPosition; // Hvor fjenderne bevæger sig imod
+
+    public EnemySpawnPoints spawnPointsScript;
     public int liv = 5;
     public int score = 0;
     public ObjektType valgteObjektType = ObjektType.objekt1;
@@ -282,8 +288,13 @@ public class SceneController : MonoBehaviour {
             if (fallingObjects == null)
                 fallingObjects = new List<Transform>();
 
+            startPosition = spawnPointsScript.GetSpawnPoint();
+
             // Lav et nyt objekt af vores prefab (og sørg for at det er tændt)
-            fallingObjects.Add( (GameObject.Instantiate(fallendeObjektPrefab, startPosition.position, startPosition.rotation) as GameObject).transform);
+            fallingObjects.Add( (GameObject.Instantiate(fallendeObjektPrefab, startPosition, Quaternion.identity) as GameObject).transform);
+
+            // Sæt objektets mål til at være den placering vi har valgt - eller sæt målet til at være MainCamera
+            (fallingObjects[fallingObjects.Count - 1]).GetComponent<ObjectController>().Init( (slutPosition != null) ? slutPosition : Camera.main.transform );
 
             fallingObjects[fallingObjects.Count-1].gameObject.SetActive(true);
         }
