@@ -194,7 +194,7 @@ public class F3DFXController : MonoBehaviour
     void AdvanceSocket()
     {
         curSocket++;
-        if (curSocket > 3)
+        if (curSocket > (TurretSocket.Length-1))
             curSocket = 0;
     }
 
@@ -429,29 +429,29 @@ public class F3DFXController : MonoBehaviour
     // Fire plasma beam weapon
     void PlasmaBeam()
     {
-        F3DPool.instance.Spawn(plasmaBeam, TurretSocket[0].position, TurretSocket[0].rotation, TurretSocket[0]);
-        F3DPool.instance.Spawn(plasmaBeam, TurretSocket[2].position, TurretSocket[2].rotation, TurretSocket[2]);
+        F3DPool.instance.Spawn(plasmaBeam, TurretSocket[0 % TurretSocket.Length].position, TurretSocket[0 % TurretSocket.Length].rotation, TurretSocket[0 % TurretSocket.Length]);
+        F3DPool.instance.Spawn(plasmaBeam, TurretSocket[1 % TurretSocket.Length].position, TurretSocket[1 % TurretSocket.Length].rotation, TurretSocket[1 % TurretSocket.Length]);
     }
 
     // Fire heavy beam weapon
     void PlasmaBeamHeavy()
     {
-        F3DPool.instance.Spawn(plasmaBeamHeavy, TurretSocket[0].position, TurretSocket[0].rotation, TurretSocket[0]);
-        F3DPool.instance.Spawn(plasmaBeamHeavy, TurretSocket[2].position, TurretSocket[2].rotation, TurretSocket[2]);
+        F3DPool.instance.Spawn(plasmaBeamHeavy, TurretSocket[0 % TurretSocket.Length].position, TurretSocket[0 % TurretSocket.Length].rotation, TurretSocket[0 % TurretSocket.Length]);
+        F3DPool.instance.Spawn(plasmaBeamHeavy, TurretSocket[1 % TurretSocket.Length].position, TurretSocket[1 % TurretSocket.Length].rotation, TurretSocket[1 % TurretSocket.Length]);
     }
 
     // Fire lightning gun weapon
     void LightningGun()
     {
-        F3DPool.instance.Spawn(lightningGunBeam, TurretSocket[0].position, TurretSocket[0].rotation, TurretSocket[0]);
-        F3DPool.instance.Spawn(lightningGunBeam, TurretSocket[2].position, TurretSocket[2].rotation, TurretSocket[2]);
+        F3DPool.instance.Spawn(lightningGunBeam, TurretSocket[0 % TurretSocket.Length].position, TurretSocket[0 % TurretSocket.Length].rotation, TurretSocket[0 % TurretSocket.Length]);
+        F3DPool.instance.Spawn(lightningGunBeam, TurretSocket[1 % TurretSocket.Length].position, TurretSocket[1 % TurretSocket.Length].rotation, TurretSocket[1 % TurretSocket.Length]);
     }
 
     // Fire flames weapon
     void FlameRed()
     {
-        F3DPool.instance.Spawn(flameRed, TurretSocket[0].position, TurretSocket[0].rotation, TurretSocket[0]);
-        F3DPool.instance.Spawn(flameRed, TurretSocket[2].position, TurretSocket[2].rotation, TurretSocket[2]);
+        F3DPool.instance.Spawn(flameRed, TurretSocket[0 % TurretSocket.Length].position, TurretSocket[0 % TurretSocket.Length].rotation, TurretSocket[0 % TurretSocket.Length]);
+        F3DPool.instance.Spawn(flameRed, TurretSocket[1 % TurretSocket.Length].position, TurretSocket[1 % TurretSocket.Length].rotation, TurretSocket[1 % TurretSocket.Length]);
     }
 
     // Fire laser pulse weapon

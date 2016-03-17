@@ -16,7 +16,7 @@ public enum WeaponType
     vulcan = 0,
     nr2 = 1,
     nr3 = 2,
-    nr4 = 3
+    flamer = 3
 }
 
 public class SceneController : MonoBehaviour {
@@ -151,8 +151,8 @@ public class SceneController : MonoBehaviour {
             case WeaponType.nr3:
                 F3DFXController.instance.DefaultFXType = F3DFXType.LightningGun;
                 break;
-            case WeaponType.nr4:
-                F3DFXController.instance.DefaultFXType = F3DFXType.RailGun;
+            case WeaponType.flamer:
+                F3DFXController.instance.DefaultFXType = F3DFXType.FlameRed;
                 break;
             default:
                 break;

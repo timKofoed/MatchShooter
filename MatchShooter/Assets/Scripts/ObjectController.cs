@@ -39,6 +39,8 @@ public class ObjectController : MonoBehaviour {
                                                 objekt.transform.position.z);
     }
 
+    
+
     public void TagSkade(float skade)
     {
         health -= skade;

@@ -37,6 +37,30 @@ public class F3DFlameThrower : MonoBehaviour
         F3DPool.instance.Despawn(transform);
     }
 
+    // Hvis vi bruger en flammekaster (et våben som bruger et partikel system)
+    void OnParticleCollision(GameObject other)
+    {
+        GunController.TargetHit(other);
+
+        /*int safeLength = part.GetSafeCollisionEventSize();
+        if (collisionEvents.Length < safeLength)
+            collisionEvents = new ParticleCollisionEvent[safeLength];
+
+        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        int i = 0;
+        while (i < numCollisionEvents)
+        {
+            if (rb)
+            {
+                Vector3 pos = collisionEvents[i].intersection;
+                Vector3 force = collisionEvents[i].velocity * 10;
+                rb.AddForce(force);
+            }
+            i++;
+        }*/
+    }
+
     void Update()
     {
         // Despawn on mouse
