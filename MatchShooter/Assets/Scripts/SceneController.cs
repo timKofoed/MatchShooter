@@ -20,7 +20,8 @@ public enum WeaponType
 }
 
 public class SceneController : MonoBehaviour {
-    public GameObject fallendeObjektPrefab;
+    public GameObject faldendeObjektPrefab;
+    public List<GameObject> faldendeObjekterPrefabs;
 
     private Vector3 startPosition;
 
@@ -34,6 +35,8 @@ public class SceneController : MonoBehaviour {
     public HighScoreScript highscoreScript;
 
     public GameObject environmentRoot;
+    public GameObject environmentRootClouds;
+    public GameObject environmentRootContours;
 
     public Button knap1;
     public Button knap2;
@@ -115,11 +118,61 @@ public class SceneController : MonoBehaviour {
         gunController.SetDamagePotential(damage);
     }
 
+    float contourFlare = 0.0f;
+    Color contourColor;
+    bool contourIncreasing = true;  // Determines if we're increasing or decreasing the highlights
     private IEnumerator RotateEnvironment()
     {
+        contourColor = new Color(1.0f, 1.0f, 1.0f);
         while(true)
         {
-            environmentRoot.transform.Rotate(0.0f, 0.015f, 0.0f);
+            if (contourIncreasing)
+            {
+                contourFlare += 0.01f;
+                if(contourFlare > 1.0f)
+                {
+                    contourFlare = 1.0f;
+                    contourIncreasing = false;
+                }
+            }
+            else
+            {
+                contourFlare -= 0.01f;
+                if (contourFlare < 0.0f)
+                {
+                    contourFlare = 0.0f;
+                    contourIncreasing = true;
+                }
+            }
+                
+            float r = 1.0f;
+            float g = Mathf.Clamp(contourFlare * 0.8f, 0.3f, 0.8f) ;
+            float b = Mathf.Clamp(contourFlare * 0.8f, 0.3f, 0.8f);
+            contourColor.r = r;
+            contourColor.g = g;
+            contourColor.b = b;
+
+            //mat.SetColor("_EmissionColor", finalColor);
+            if(environmentRootContours != null)
+                environmentRootContours.GetComponent<Renderer>().material.SetColor("_EmissionColor", contourColor);
+
+            if(environmentRoot != null)
+            {
+                // Rotate the planet
+                environmentRoot.transform.Rotate(0.0f, 0.015f, 0.0f);
+                
+                // Rotate the contours with the planet
+                if (environmentRootContours != null)
+                    environmentRootContours.transform.Rotate(0.0f, 0.015f, 0.0f);
+            }
+            
+
+            if(environmentRootClouds != null)
+            {
+                // Rotate the clouds
+                environmentRootClouds.transform.Rotate(0.005f, 0.01f, 0.012f);
+            }
+                
             yield return new WaitForEndOfFrame();
         }
         
@@ -290,8 +343,11 @@ public class SceneController : MonoBehaviour {
 
             startPosition = spawnPointsScript.GetSpawnPoint();
 
+            
+            int objCount = Random.Range(0, faldendeObjekterPrefabs.Count);
+
             // Lav et nyt objekt af vores prefab (og sørg for at det er tændt)
-            fallingObjects.Add( (GameObject.Instantiate(fallendeObjektPrefab, startPosition, Quaternion.identity) as GameObject).transform);
+            fallingObjects.Add( (GameObject.Instantiate(faldendeObjekterPrefabs[objCount], startPosition, Quaternion.identity) as GameObject).transform);
 
             // Sæt objektets mål til at være den placering vi har valgt - eller sæt målet til at være MainCamera
             (fallingObjects[fallingObjects.Count - 1]).GetComponent<ObjectController>().Init( (slutPosition != null) ? slutPosition : Camera.main.transform );
@@ -308,9 +364,9 @@ public class SceneController : MonoBehaviour {
         Destroy(objectToRemove);
     }
 
-    public void MistLiv()
+    public void MistLiv(int livMistet)
     {
-        liv -= 1;
+        liv -= livMistet;
 
         if (liv <= 0)
             GameOver();

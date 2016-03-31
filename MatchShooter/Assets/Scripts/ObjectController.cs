@@ -8,6 +8,8 @@ public class ObjectController : MonoBehaviour {
 
     // Den hastighed som objektet falder med
     public float hastighed;
+    public bool shouldRotate = true;
+    public bool shouldScale = true;
 
     [SerializeField]
     private Vector3 rotation;
@@ -37,6 +39,10 @@ public class ObjectController : MonoBehaviour {
     [SerializeField]
     private float health = 10.0f;
 
+    // Hvor meget skade dette objekt giver spilleren, hvis man ikke får det skudt ned
+    [SerializeField]
+    private int damagePotential = 1;
+
     // Hvor mange sekunder det tager dette objekt at fade-in, i stedet for bare at blinke ind når det bliver lavet
     [SerializeField]
     private float fadeInTime = 1.0f;
@@ -65,7 +71,8 @@ public class ObjectController : MonoBehaviour {
                                                     objekt.transform.position.z);
         }
 
-        this.transform.Rotate(rotation);
+        if(shouldRotate)
+            this.transform.Rotate(rotation);
 
         if((Time.realtimeSinceStartup < fadeInStartTime + fadeInTime) && isFadingIn)
         {
@@ -96,8 +103,13 @@ public class ObjectController : MonoBehaviour {
 
         rotation = new Vector3( 0.8f * Random.value, 0.8f * Random.value, 0.8f * Random.value);
         float newScale = Random.value * 1.5f;
-        newScale = Mathf.Clamp(newScale, 0.5f, 2.0f);
-        this.transform.localScale = new Vector3(newScale, newScale, newScale);
+
+        if(shouldScale)
+        {
+            newScale = Mathf.Clamp(newScale, 0.5f, 2.0f);
+            this.transform.localScale = new Vector3(newScale, newScale, newScale);
+        }
+        
     }
 
     public void TagSkade(float skade)
@@ -116,7 +128,7 @@ public class ObjectController : MonoBehaviour {
     void HarRamtBunden()
     {
         // Kald funktionen "MistLiv" i sceneControlleren
-        controller.MistLiv();
+        controller.MistLiv(damagePotential);
     }
 
     /// <summary>
