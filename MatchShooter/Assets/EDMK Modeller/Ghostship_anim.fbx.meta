@@ -1,0 +1,926 @@
+fileFormatVersion: 2
+guid: 2e4d96efec677254a99167639fe78223
+timeCreated: 1460026772
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: anker
+    100002: backpart:bottom
+    100004: backpart:oedealgt_model
+    100006: backpart:pCube13
+    100008: backpart:pCube53
+    100010: backpart:pCube55
+    100012: backpart:persp1
+    100014: backpart:pPlane1
+    100016: backpart:pPlane2
+    100018: backpart:pPlane3
+    100020: backpart:transform1
+    100022: backpart:transform10
+    100024: backpart:transform11
+    100026: backpart:transform12
+    100028: backpart:transform13
+    100030: backpart:transform14
+    100032: backpart:transform15
+    100034: backpart:transform16
+    100036: backpart:transform17
+    100038: backpart:transform18
+    100040: backpart:transform19
+    100042: backpart:transform2
+    100044: backpart:transform20
+    100046: backpart:transform21
+    100048: backpart:transform22
+    100050: backpart:transform23
+    100052: backpart:transform24
+    100054: backpart:transform25
+    100056: backpart:transform26
+    100058: backpart:transform27
+    100060: backpart:transform28
+    100062: backpart:transform29
+    100064: backpart:transform3
+    100066: backpart:transform30
+    100068: backpart:transform31
+    100070: backpart:transform32
+    100072: backpart:transform33
+    100074: backpart:transform34
+    100076: backpart:transform35
+    100078: backpart:transform36
+    100080: backpart:transform37
+    100082: backpart:transform38
+    100084: backpart:transform39
+    100086: backpart:transform4
+    100088: backpart:transform40
+    100090: backpart:transform41
+    100092: backpart:transform42
+    100094: backpart:transform43
+    100096: backpart:transform44
+    100098: backpart:transform45
+    100100: backpart:transform46
+    100102: backpart:transform47
+    100104: backpart:transform48
+    100106: backpart:transform49
+    100108: backpart:transform5
+    100110: backpart:transform50
+    100112: backpart:transform51
+    100114: backpart:transform6
+    100116: backpart:transform7
+    100118: backpart:transform8
+    100120: backpart:transform9
+    100122: bottom
+    100124: //RootNode
+    100126: oedealgt_model
+    100128: pCube1
+    100130: pCube13
+    100132: pCube14
+    100134: pCube18
+    100136: pCube2
+    100138: pCube24
+    100140: pCube25
+    100142: pCube26
+    100144: pCube27
+    100146: pCube28
+    100148: pCube29
+    100150: pCube3
+    100152: pCube30
+    100154: pCube31
+    100156: pCube32
+    100158: pCube33
+    100160: pCube4
+    100162: pCube5
+    100164: pCube55
+    100166: pCube56
+    100168: pCube57
+    100170: pCube58
+    100172: pCube59
+    100174: pCube6
+    100176: pCube60
+    100178: pCube61
+    100180: pCube62
+    100182: pCube63
+    100184: pCube64
+    100186: pCube65
+    100188: pCube66
+    100190: pCube67
+    100192: pCube68
+    100194: pCube69
+    100196: pCube7
+    100198: pCube70
+    100200: pCube8
+    100202: pCube9
+    100204: pCylinder1
+    100206: pCylinder10
+    100208: pCylinder11
+    100210: pCylinder12
+    100212: pCylinder13
+    100214: pCylinder15
+    100216: pCylinder16
+    100218: pCylinder19
+    100220: pCylinder2
+    100222: pCylinder20
+    100224: pCylinder22
+    100226: pCylinder23
+    100228: pCylinder24
+    100230: pCylinder25
+    100232: pCylinder26
+    100234: pCylinder27
+    100236: pCylinder28
+    100238: pCylinder29
+    100240: pCylinder3
+    100242: pCylinder30
+    100244: pCylinder31
+    100246: pCylinder32
+    100248: pCylinder33
+    100250: pCylinder35
+    100252: pCylinder36
+    100254: pCylinder37
+    100256: pCylinder38
+    100258: pCylinder39
+    100260: pCylinder4
+    100262: pCylinder5
+    100264: pCylinder6
+    100266: pCylinder8
+    100268: pCylinder9
+    100270: persp1
+    100272: persp2
+    100274: polySurface1
+    100276: polySurface2
+    100278: polySurface3
+    100280: polySurface4
+    100282: polySurface5
+    100284: polySurface6
+    100286: pPlane1
+    100288: pPlane10
+    100290: pPlane11
+    100292: pPlane12
+    100294: pPlane13
+    100296: pPlane14
+    100298: pPlane15
+    100300: pPlane2
+    100302: pPlane3
+    100304: pPlane4
+    100306: pPlane5
+    100308: pPlane6
+    100310: pPlane7
+    100312: pPlane8
+    100314: pPlane9
+    100316: transform1
+    100318: transform10
+    100320: transform11
+    100322: transform12
+    100324: transform13
+    100326: transform14
+    100328: transform15
+    100330: transform16
+    100332: transform17
+    100334: transform18
+    100336: transform19
+    100338: transform2
+    100340: transform20
+    100342: transform21
+    100344: transform22
+    100346: transform23
+    100348: transform24
+    100350: transform25
+    100352: transform26
+    100354: transform27
+    100356: transform28
+    100358: transform29
+    100360: transform3
+    100362: transform30
+    100364: transform31
+    100366: transform32
+    100368: transform33
+    100370: transform34
+    100372: transform35
+    100374: transform36
+    100376: transform37
+    100378: transform38
+    100380: transform39
+    100382: transform4
+    100384: transform40
+    100386: transform5
+    100388: transform6
+    100390: transform7
+    100392: transform8
+    100394: transform9
+    400000: anker
+    400002: backpart:bottom
+    400004: backpart:oedealgt_model
+    400006: backpart:pCube13
+    400008: backpart:pCube53
+    400010: backpart:pCube55
+    400012: backpart:persp1
+    400014: backpart:pPlane1
+    400016: backpart:pPlane2
+    400018: backpart:pPlane3
+    400020: backpart:transform1
+    400022: backpart:transform10
+    400024: backpart:transform11
+    400026: backpart:transform12
+    400028: backpart:transform13
+    400030: backpart:transform14
+    400032: backpart:transform15
+    400034: backpart:transform16
+    400036: backpart:transform17
+    400038: backpart:transform18
+    400040: backpart:transform19
+    400042: backpart:transform2
+    400044: backpart:transform20
+    400046: backpart:transform21
+    400048: backpart:transform22
+    400050: backpart:transform23
+    400052: backpart:transform24
+    400054: backpart:transform25
+    400056: backpart:transform26
+    400058: backpart:transform27
+    400060: backpart:transform28
+    400062: backpart:transform29
+    400064: backpart:transform3
+    400066: backpart:transform30
+    400068: backpart:transform31
+    400070: backpart:transform32
+    400072: backpart:transform33
+    400074: backpart:transform34
+    400076: backpart:transform35
+    400078: backpart:transform36
+    400080: backpart:transform37
+    400082: backpart:transform38
+    400084: backpart:transform39
+    400086: backpart:transform4
+    400088: backpart:transform40
+    400090: backpart:transform41
+    400092: backpart:transform42
+    400094: backpart:transform43
+    400096: backpart:transform44
+    400098: backpart:transform45
+    400100: backpart:transform46
+    400102: backpart:transform47
+    400104: backpart:transform48
+    400106: backpart:transform49
+    400108: backpart:transform5
+    400110: backpart:transform50
+    400112: backpart:transform51
+    400114: backpart:transform6
+    400116: backpart:transform7
+    400118: backpart:transform8
+    400120: backpart:transform9
+    400122: bottom
+    400124: //RootNode
+    400126: oedealgt_model
+    400128: pCube1
+    400130: pCube13
+    400132: pCube14
+    400134: pCube18
+    400136: pCube2
+    400138: pCube24
+    400140: pCube25
+    400142: pCube26
+    400144: pCube27
+    400146: pCube28
+    400148: pCube29
+    400150: pCube3
+    400152: pCube30
+    400154: pCube31
+    400156: pCube32
+    400158: pCube33
+    400160: pCube4
+    400162: pCube5
+    400164: pCube55
+    400166: pCube56
+    400168: pCube57
+    400170: pCube58
+    400172: pCube59
+    400174: pCube6
+    400176: pCube60
+    400178: pCube61
+    400180: pCube62
+    400182: pCube63
+    400184: pCube64
+    400186: pCube65
+    400188: pCube66
+    400190: pCube67
+    400192: pCube68
+    400194: pCube69
+    400196: pCube7
+    400198: pCube70
+    400200: pCube8
+    400202: pCube9
+    400204: pCylinder1
+    400206: pCylinder10
+    400208: pCylinder11
+    400210: pCylinder12
+    400212: pCylinder13
+    400214: pCylinder15
+    400216: pCylinder16
+    400218: pCylinder19
+    400220: pCylinder2
+    400222: pCylinder20
+    400224: pCylinder22
+    400226: pCylinder23
+    400228: pCylinder24
+    400230: pCylinder25
+    400232: pCylinder26
+    400234: pCylinder27
+    400236: pCylinder28
+    400238: pCylinder29
+    400240: pCylinder3
+    400242: pCylinder30
+    400244: pCylinder31
+    400246: pCylinder32
+    400248: pCylinder33
+    400250: pCylinder35
+    400252: pCylinder36
+    400254: pCylinder37
+    400256: pCylinder38
+    400258: pCylinder39
+    400260: pCylinder4
+    400262: pCylinder5
+    400264: pCylinder6
+    400266: pCylinder8
+    400268: pCylinder9
+    400270: persp1
+    400272: persp2
+    400274: polySurface1
+    400276: polySurface2
+    400278: polySurface3
+    400280: polySurface4
+    400282: polySurface5
+    400284: polySurface6
+    400286: pPlane1
+    400288: pPlane10
+    400290: pPlane11
+    400292: pPlane12
+    400294: pPlane13
+    400296: pPlane14
+    400298: pPlane15
+    400300: pPlane2
+    400302: pPlane3
+    400304: pPlane4
+    400306: pPlane5
+    400308: pPlane6
+    400310: pPlane7
+    400312: pPlane8
+    400314: pPlane9
+    400316: transform1
+    400318: transform10
+    400320: transform11
+    400322: transform12
+    400324: transform13
+    400326: transform14
+    400328: transform15
+    400330: transform16
+    400332: transform17
+    400334: transform18
+    400336: transform19
+    400338: transform2
+    400340: transform20
+    400342: transform21
+    400344: transform22
+    400346: transform23
+    400348: transform24
+    400350: transform25
+    400352: transform26
+    400354: transform27
+    400356: transform28
+    400358: transform29
+    400360: transform3
+    400362: transform30
+    400364: transform31
+    400366: transform32
+    400368: transform33
+    400370: transform34
+    400372: transform35
+    400374: transform36
+    400376: transform37
+    400378: transform38
+    400380: transform39
+    400382: transform4
+    400384: transform40
+    400386: transform5
+    400388: transform6
+    400390: transform7
+    400392: transform8
+    400394: transform9
+    2300000: backpart:oedealgt_model
+    2300002: backpart:pCube13
+    2300004: backpart:pPlane1
+    2300006: backpart:pPlane2
+    2300008: backpart:pPlane3
+    2300010: oedealgt_model
+    2300012: pCube13
+    2300014: persp2
+    2300016: pPlane1
+    2300018: pPlane2
+    2300020: pPlane3
+    3300000: backpart:oedealgt_model
+    3300002: backpart:pCube13
+    3300004: backpart:pPlane1
+    3300006: backpart:pPlane2
+    3300008: backpart:pPlane3
+    3300010: oedealgt_model
+    3300012: pCube13
+    3300014: persp2
+    3300016: pPlane1
+    3300018: pPlane2
+    3300020: pPlane3
+    4300000: pPlane1
+    4300002: pPlane2
+    4300004: pPlane3
+    4300006: oedealgt_model
+    4300008: pCube13
+    4300010: backpart:pPlane1
+    4300012: backpart:pPlane2
+    4300014: backpart:pPlane3
+    4300016: backpart:oedealgt_model
+    4300018: backpart:pCube13
+    4300020: persp2
+    7400000: SwayingShip
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SwayingShip
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: anker
+        weight: 1
+      - path: anker/polySurface1
+        weight: 1
+      - path: anker/polySurface1/transform37
+        weight: 1
+      - path: anker/polySurface2
+        weight: 1
+      - path: anker/polySurface2/transform36
+        weight: 1
+      - path: anker/polySurface3
+        weight: 1
+      - path: anker/polySurface3/transform35
+        weight: 1
+      - path: anker/polySurface4
+        weight: 1
+      - path: anker/polySurface4/transform34
+        weight: 1
+      - path: anker/polySurface5
+        weight: 1
+      - path: anker/polySurface5/transform33
+        weight: 1
+      - path: anker/polySurface6
+        weight: 1
+      - path: anker/polySurface6/transform32
+        weight: 1
+      - path: anker/transform1
+        weight: 1
+      - path: backpart:bottom
+        weight: 1
+      - path: backpart:oedealgt_model
+        weight: 1
+      - path: backpart:pCube13
+        weight: 1
+      - path: backpart:pCube53
+        weight: 1
+      - path: backpart:pCube53/backpart:transform51
+        weight: 1
+      - path: backpart:pCube55
+        weight: 1
+      - path: backpart:pCube55/backpart:transform50
+        weight: 1
+      - path: backpart:persp1
+        weight: 1
+      - path: backpart:pPlane1
+        weight: 1
+      - path: backpart:pPlane2
+        weight: 1
+      - path: backpart:pPlane3
+        weight: 1
+      - path: bottom
+        weight: 1
+      - path: oedealgt_model
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform40
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform14
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform19
+        weight: 1
+      - path: pCube4
+        weight: 1
+      - path: pCube4/transform18
+        weight: 1
+      - path: pCube5
+        weight: 1
+      - path: pCube5/transform17
+        weight: 1
+      - path: pCube6
+        weight: 1
+      - path: pCube6/transform16
+        weight: 1
+      - path: pCube7
+        weight: 1
+      - path: pCube7/transform15
+        weight: 1
+      - path: pCube8
+        weight: 1
+      - path: pCube8/transform13
+        weight: 1
+      - path: pCube9
+        weight: 1
+      - path: pCube9/transform39
+        weight: 1
+      - path: pCube13
+        weight: 1
+      - path: pCube14
+        weight: 1
+      - path: pCube14/transform38
+        weight: 1
+      - path: pCube18
+        weight: 1
+      - path: pCube18/transform6
+        weight: 1
+      - path: pCube24
+        weight: 1
+      - path: pCube24/transform12
+        weight: 1
+      - path: pCube25
+        weight: 1
+      - path: pCube25/transform2
+        weight: 1
+      - path: pCube26
+        weight: 1
+      - path: pCube26/transform5
+        weight: 1
+      - path: pCube27
+        weight: 1
+      - path: pCube27/transform4
+        weight: 1
+      - path: pCube28
+        weight: 1
+      - path: pCube28/transform3
+        weight: 1
+      - path: pCube29
+        weight: 1
+      - path: pCube29/transform11
+        weight: 1
+      - path: pCube30
+        weight: 1
+      - path: pCube30/transform10
+        weight: 1
+      - path: pCube31
+        weight: 1
+      - path: pCube31/transform9
+        weight: 1
+      - path: pCube32
+        weight: 1
+      - path: pCube32/transform8
+        weight: 1
+      - path: pCube33
+        weight: 1
+      - path: pCube33/transform7
+        weight: 1
+      - path: pCube55
+        weight: 1
+      - path: pCube55/backpart:transform49
+        weight: 1
+      - path: pCube56
+        weight: 1
+      - path: pCube56/backpart:transform48
+        weight: 1
+      - path: pCube57
+        weight: 1
+      - path: pCube57/backpart:transform47
+        weight: 1
+      - path: pCube58
+        weight: 1
+      - path: pCube58/transform31
+        weight: 1
+      - path: pCube59
+        weight: 1
+      - path: pCube59/transform30
+        weight: 1
+      - path: pCube60
+        weight: 1
+      - path: pCube60/transform29
+        weight: 1
+      - path: pCube61
+        weight: 1
+      - path: pCube61/transform28
+        weight: 1
+      - path: pCube62
+        weight: 1
+      - path: pCube62/transform27
+        weight: 1
+      - path: pCube63
+        weight: 1
+      - path: pCube63/transform26
+        weight: 1
+      - path: pCube64
+        weight: 1
+      - path: pCube64/transform25
+        weight: 1
+      - path: pCube65
+        weight: 1
+      - path: pCube65/backpart:transform46
+        weight: 1
+      - path: pCube66
+        weight: 1
+      - path: pCube66/transform24
+        weight: 1
+      - path: pCube67
+        weight: 1
+      - path: pCube67/backpart:transform45
+        weight: 1
+      - path: pCube68
+        weight: 1
+      - path: pCube68/backpart:transform16
+        weight: 1
+      - path: pCube69
+        weight: 1
+      - path: pCube69/backpart:transform15
+        weight: 1
+      - path: pCube70
+        weight: 1
+      - path: pCube70/backpart:transform14
+        weight: 1
+      - path: pCylinder1
+        weight: 1
+      - path: pCylinder1/transform23
+        weight: 1
+      - path: pCylinder2
+        weight: 1
+      - path: pCylinder2/transform22
+        weight: 1
+      - path: pCylinder3
+        weight: 1
+      - path: pCylinder3/transform21
+        weight: 1
+      - path: pCylinder4
+        weight: 1
+      - path: pCylinder4/transform20
+        weight: 1
+      - path: pCylinder5
+        weight: 1
+      - path: pCylinder5/backpart:transform44
+        weight: 1
+      - path: pCylinder6
+        weight: 1
+      - path: pCylinder6/backpart:transform43
+        weight: 1
+      - path: pCylinder8
+        weight: 1
+      - path: pCylinder8/backpart:transform42
+        weight: 1
+      - path: pCylinder9
+        weight: 1
+      - path: pCylinder9/backpart:transform41
+        weight: 1
+      - path: pCylinder10
+        weight: 1
+      - path: pCylinder10/backpart:transform40
+        weight: 1
+      - path: pCylinder11
+        weight: 1
+      - path: pCylinder11/backpart:transform39
+        weight: 1
+      - path: pCylinder12
+        weight: 1
+      - path: pCylinder12/backpart:transform38
+        weight: 1
+      - path: pCylinder13
+        weight: 1
+      - path: pCylinder13/backpart:transform37
+        weight: 1
+      - path: pCylinder15
+        weight: 1
+      - path: pCylinder15/backpart:transform36
+        weight: 1
+      - path: pCylinder16
+        weight: 1
+      - path: pCylinder16/backpart:transform35
+        weight: 1
+      - path: pCylinder19
+        weight: 1
+      - path: pCylinder19/backpart:transform34
+        weight: 1
+      - path: pCylinder20
+        weight: 1
+      - path: pCylinder20/backpart:transform33
+        weight: 1
+      - path: pCylinder22
+        weight: 1
+      - path: pCylinder22/backpart:transform32
+        weight: 1
+      - path: pCylinder23
+        weight: 1
+      - path: pCylinder23/backpart:transform31
+        weight: 1
+      - path: pCylinder24
+        weight: 1
+      - path: pCylinder24/backpart:transform30
+        weight: 1
+      - path: pCylinder25
+        weight: 1
+      - path: pCylinder25/backpart:transform29
+        weight: 1
+      - path: pCylinder26
+        weight: 1
+      - path: pCylinder26/backpart:transform28
+        weight: 1
+      - path: pCylinder27
+        weight: 1
+      - path: pCylinder27/backpart:transform27
+        weight: 1
+      - path: pCylinder28
+        weight: 1
+      - path: pCylinder28/backpart:transform26
+        weight: 1
+      - path: pCylinder29
+        weight: 1
+      - path: pCylinder29/backpart:transform25
+        weight: 1
+      - path: pCylinder30
+        weight: 1
+      - path: pCylinder30/backpart:transform24
+        weight: 1
+      - path: pCylinder31
+        weight: 1
+      - path: pCylinder31/backpart:transform23
+        weight: 1
+      - path: pCylinder32
+        weight: 1
+      - path: pCylinder32/backpart:transform22
+        weight: 1
+      - path: pCylinder33
+        weight: 1
+      - path: pCylinder33/backpart:transform21
+        weight: 1
+      - path: pCylinder35
+        weight: 1
+      - path: pCylinder35/backpart:transform20
+        weight: 1
+      - path: pCylinder36
+        weight: 1
+      - path: pCylinder36/backpart:transform19
+        weight: 1
+      - path: pCylinder37
+        weight: 1
+      - path: pCylinder37/backpart:transform18
+        weight: 1
+      - path: pCylinder38
+        weight: 1
+      - path: pCylinder38/backpart:transform17
+        weight: 1
+      - path: pCylinder39
+        weight: 1
+      - path: pCylinder39/backpart:transform13
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: persp2
+        weight: 1
+      - path: pPlane1
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/backpart:transform12
+        weight: 1
+      - path: pPlane5
+        weight: 1
+      - path: pPlane5/backpart:transform11
+        weight: 1
+      - path: pPlane6
+        weight: 1
+      - path: pPlane6/backpart:transform10
+        weight: 1
+      - path: pPlane7
+        weight: 1
+      - path: pPlane7/backpart:transform9
+        weight: 1
+      - path: pPlane8
+        weight: 1
+      - path: pPlane8/backpart:transform8
+        weight: 1
+      - path: pPlane9
+        weight: 1
+      - path: pPlane9/backpart:transform7
+        weight: 1
+      - path: pPlane10
+        weight: 1
+      - path: pPlane10/backpart:transform6
+        weight: 1
+      - path: pPlane11
+        weight: 1
+      - path: pPlane11/backpart:transform5
+        weight: 1
+      - path: pPlane12
+        weight: 1
+      - path: pPlane12/backpart:transform4
+        weight: 1
+      - path: pPlane13
+        weight: 1
+      - path: pPlane13/backpart:transform3
+        weight: 1
+      - path: pPlane14
+        weight: 1
+      - path: pPlane14/backpart:transform2
+        weight: 1
+      - path: pPlane15
+        weight: 1
+      - path: pPlane15/backpart:transform1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

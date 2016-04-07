@@ -165,7 +165,7 @@ public class ObjectController : MonoBehaviour {
         controller = GameObject.FindWithTag("sceneController").GetComponent<SceneController>();
         int valgtType = Random.Range(0,4) + 1;
         minType = (ObjektType)valgtType;
-        mitMaterial = new Material( this.gameObject.GetComponent<Renderer>().material );
+        mitMaterial = new Material( this.gameObject.GetComponentInChildren<Renderer>().material );
 
         if (minType == ObjektType.objekt1)
             mitMaterial.color = controller.knap1Tryk;
@@ -182,7 +182,7 @@ public class ObjectController : MonoBehaviour {
         Color emissiveColor = new Color(mitMaterial.color.r / 2.0f, mitMaterial.color.g / 2.0f, mitMaterial.color.b / 2.0f);
         mitMaterial.SetColor("_EmissionColor", emissiveColor);
 
-        this.gameObject.GetComponent<Renderer>().material = mitMaterial;
+        this.gameObject.GetComponentInChildren<Renderer>().material = mitMaterial;
 
         // Husk hvor vi startede, så vi kan bevæge objektet mod målet
         startPosition = this.transform.position;
