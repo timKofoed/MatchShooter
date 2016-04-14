@@ -7,6 +7,9 @@ public class TurretSwitchControl : MonoBehaviour {
     bool isSwitching = false;
     private Animator animator;
 
+    [SerializeField]
+    protected Transform turretHousing;
+
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
@@ -26,6 +29,14 @@ public class TurretSwitchControl : MonoBehaviour {
 
         Debug.Log("attempting to switch to turret index " + turretIndex);
         StartCoroutine( DelayedSwitchPermission() );
+    }
+
+    public void ResetTurretRotation()
+    {
+        if (turretHousing != null)
+        {
+            turretHousing.localEulerAngles = Vector3.zero;
+        }
     }
 
     private IEnumerator DelayedSwitchPermission()
