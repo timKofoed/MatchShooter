@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /// <summary>
@@ -10,6 +11,12 @@ public class ObjectController : MonoBehaviour {
     public float hastighed;
     public bool shouldRotate = true;
     public bool shouldScale = true;
+    private float healthAtStart = 0f;
+    [SerializeField]
+    private Sprite icon;    // Det ikon som skal vises på UI når dette element bliver vist
+
+    // Det objekt som viser hvor meget liv dette objekt stadig har tilbage
+    //public GameObject healthBar;    
 
     [SerializeField]
     private Vector3 rotation;
@@ -88,7 +95,11 @@ public class ObjectController : MonoBehaviour {
             modifiedColor.a = 1.0f;
             mitMaterial.color = modifiedColor;
         }
-        
+
+        // orientér "HealthBar"'en mod spilleren, så vi altid kan se den korrekt, selvom den roterer
+        //if (healthBar != null)
+        //    healthBar.transform.LookAt(Camera.main.transform);
+   
 
     }
 
@@ -116,9 +127,18 @@ public class ObjectController : MonoBehaviour {
     {
         health -= skade;
 
-        if(health <= 0.0f)
+        //if (healthBar != null)
+        //    healthBar.transform.localScale = new Vector3(1f, health / healthAtStart, 1f);
+
+        if (health <= 0.0f)
         {
+            controller.EnemyReceivedDamage(icon, 0f);
             controller.RemoveObject(this.gameObject);
+        }
+        else
+        {
+            // Fortæl Controller'en at dette objekt er det seneste til at tage skade, og send ikonet til UI'en
+            controller.EnemyReceivedDamage(icon, health / healthAtStart);
         }
     }
 
@@ -130,7 +150,7 @@ public class ObjectController : MonoBehaviour {
         // Kald funktionen "MistLiv" i sceneControlleren
         controller.MistLiv(damagePotential);
     }
-
+    
     /// <summary>
     /// Dette objekt har ramt en Collider, som er sat til "Trigger"
     /// </summary>
@@ -139,6 +159,7 @@ public class ObjectController : MonoBehaviour {
     {
         if (other.tag == "Bund")
         {
+            Debug.Log("objekt ("+this.name+") har ramt bunden ("+other.name+")");
             // Kald funktionen HarRamtBunden, som gør det der skal gøres nu
             HarRamtBunden();
 
@@ -191,6 +212,7 @@ public class ObjectController : MonoBehaviour {
         Color modifiedColor = mitMaterial.color;
         modifiedColor.a = 0.0f;
         mitMaterial.color = modifiedColor;
+        healthAtStart = health;
     }
 	
 	// Update is called once per frame

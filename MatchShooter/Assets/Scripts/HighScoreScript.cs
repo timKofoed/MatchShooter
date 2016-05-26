@@ -245,12 +245,25 @@ public class HighScoreScript : MonoBehaviour
 
     private void ResumeGame()
     {
-        // Activate the button to restart the game
-        if (touchToStart != null)
+        // Activate the button to restart the game (but keep the button off, so we don't accidentally click it too quickly)
+        /*if (touchToStart != null)
+        {
+            touchToStart.GetComponent<Button>().enabled = false;
             touchToStart.SetActive(true);
+            StartCoroutine(ActivateButtonAfterDelay(touchToStart.GetComponent<Button>(), 2.5f));
+        }*/
+
+        touchToStart.SetActive(true);
 
         // Hide the highscore and all highscore fields
         this.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ActivateButtonAfterDelay(Button buttonToActivate, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        buttonToActivate.enabled = true;
+        Debug.Log("Button ("+buttonToActivate.name+") enabled: ("+buttonToActivate.enabled+")");
     }
 
 	public bool didWeBeatTheScore(int scoreIndexToCheck, int newScore)

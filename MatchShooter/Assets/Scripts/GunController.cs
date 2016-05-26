@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class GunController : MonoBehaviour {
 
+    public struct WeaponDamage
+    {
+        public float damage;
+        public WeaponType weaponType;
+    }
     public List<GameObject> guns;
     private GameObject gunActive;
 
@@ -22,6 +27,7 @@ public class GunController : MonoBehaviour {
     {
         if(objectHit.tag == "TargetToHit")
         {
+
             //Debug.Log("Target hit: " + objectHit.name + " damage: " + damageDealing);
             objectHit.BroadcastMessage("TagSkade", damageDealing, SendMessageOptions.DontRequireReceiver);
         }

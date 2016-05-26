@@ -86,8 +86,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162320}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.53, y: 0.32, z: 8.46}
+  m_LocalRotation: {x: -0.07720242, y: -0.5626424, z: 0.052882932, w: 0.82138705}
+  m_LocalPosition: {x: -1.93, y: 3.26, z: 17.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 451884}
@@ -211,6 +211,7 @@ MonoBehaviour:
   hastighed: 0.1
   shouldRotate: 0
   shouldScale: 0
+  icon: {fileID: 21300000, guid: 6d2359eb1aa69f54db1cc009d79a5c02, type: 3}
   rotation: {x: 0, y: 0, z: 0}
   objekt: {fileID: 162320}
   minType: 3

@@ -20,8 +20,16 @@ public enum WeaponType
 }
 
 public class SceneController : MonoBehaviour {
+    [System.Serializable]
+    public struct FaldendeObjekt
+    {
+        public float spawnChange;
+        public GameObject prefab;
+    }
+
     public GameObject faldendeObjektPrefab;
-    public List<GameObject> faldendeObjekterPrefabs;
+    [SerializeField]
+    public List<FaldendeObjekt> faldendeObjekterPrefabs;
 
     private Vector3 startPosition;
 
@@ -61,9 +69,12 @@ public class SceneController : MonoBehaviour {
     //public GameObject objekt2Preview;
     //public GameObject objekt3Preview;
     //public GameObject objekt4Preview;
+    public Image objekt1PreviewIcon;
 
     public Text scoreFelt;
     public Image livFelt;
+    public Image fjendeLivFelt;
+    public Image fjendeIkon;
 
     private float startBreddeForLivBar;
     private int startLiv;
@@ -197,8 +208,9 @@ public class SceneController : MonoBehaviour {
         
     }
 	
-    public void SaetValgtVaaben(WeaponType valgtVaaben)
+    public void SaetValgtVaaben(WeaponType valgtVaaben, ButtonChoose pressedButton)
     {
+        objekt1PreviewIcon.sprite = pressedButton.GetIcon();
         switch (valgtVaaben)
         {
             case WeaponType.vulcan:
@@ -346,8 +358,12 @@ public class SceneController : MonoBehaviour {
             
             int objCount = Random.Range(0, faldendeObjekterPrefabs.Count);
 
+            // Hvis vi vælger ikke at lave dette objekt pga den tilfældige chance, så vælger vi et nyt tal
+            while(faldendeObjekterPrefabs[objCount].spawnChange < Random.value)
+                objCount = Random.Range(0, faldendeObjekterPrefabs.Count);
+
             // Lav et nyt objekt af vores prefab (og sørg for at det er tændt)
-            fallingObjects.Add( (GameObject.Instantiate(faldendeObjekterPrefabs[objCount], startPosition, Quaternion.identity) as GameObject).transform);
+            fallingObjects.Add( (GameObject.Instantiate(faldendeObjekterPrefabs[objCount].prefab, startPosition, Quaternion.identity) as GameObject).transform);
 
             // Sæt objektets mål til at være den placering vi har valgt - eller sæt målet til at være MainCamera
             (fallingObjects[fallingObjects.Count - 1]).GetComponent<ObjectController>().Init( (slutPosition != null) ? slutPosition : Camera.main.transform );
@@ -470,6 +486,18 @@ public class SceneController : MonoBehaviour {
             return false;
         }
         
+    }
+
+    public void EnemyReceivedDamage(Sprite icon, float healthPercent)
+    {
+        if(fjendeLivFelt != null)
+        {
+            fjendeLivFelt.transform.localScale = new Vector3(healthPercent, 1.0f, 1.0f);
+        }
+        if(fjendeIkon != null && icon != null)
+        {
+            fjendeIkon.sprite = icon;
+        }
     }
 
     void FixedUpdate()

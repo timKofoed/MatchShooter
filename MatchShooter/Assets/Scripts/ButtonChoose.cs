@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ButtonChoose : MonoBehaviour {
@@ -6,6 +7,7 @@ public class ButtonChoose : MonoBehaviour {
     public SceneController sceneController;
 
     public WeaponType weaponType;
+    public Image iconImage;
 
     [SerializeField]
     private float weaponDamage = 1.0f;
@@ -19,6 +21,14 @@ public class ButtonChoose : MonoBehaviour {
         // til sceneController
         //sceneController.SaetValgtObjekt( minVaerdi );
         sceneController.SetDamagePotential(weaponDamage);
-        sceneController.SaetValgtVaaben( weaponType );
+        sceneController.SaetValgtVaaben( weaponType, this );
+    }
+
+    public Sprite GetIcon()
+    {
+        if (iconImage != null)
+            return iconImage.sprite;
+        else
+            return null;
     }
 }
