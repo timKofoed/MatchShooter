@@ -5,10 +5,10 @@ using UnityEngine.UI;   // UI elementer i Canvas
 
 public enum ObjektType
 {
-    objekt1 = 1,
-    objekt2 = 2,
-    objekt3 = 3,
-    objekt4 = 4
+    objekt1 = 0,
+    objekt2 = 1,
+    objekt3 = 2,
+    objekt4 = 3
 }
 
 public enum WeaponType

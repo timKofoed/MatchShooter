@@ -367,10 +367,10 @@ RectTransform:
   - {fileID: 1576159552}
   m_Father: {fileID: 1049643945}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -344.99994, y: -0.000015459269}
-  m_SizeDelta: {x: -690, y: -1087.9486}
+  m_AnchorMin: {x: 0, y: 0.4475043}
+  m_AnchorMax: {x: 0.13625, y: 0.55166954}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &99830457
 MonoBehaviour:
@@ -393,7 +393,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c36b34e01c00b9a4a92fbe5e8bbc0749, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -684,10 +684,10 @@ RectTransform:
   - {fileID: 1676977995}
   m_Father: {fileID: 1049643945}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -344.9999, y: -110}
-  m_SizeDelta: {x: -689.99994, y: -1087.9486}
+  m_AnchorMin: {x: 0, y: 0.33583477}
+  m_AnchorMax: {x: 0.13625, y: 0.4408348}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: -0.000061035156, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178681617
 MonoBehaviour:
@@ -710,7 +710,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c36b34e01c00b9a4a92fbe5e8bbc0749, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1430,10 +1430,10 @@ RectTransform:
   - {fileID: 2053999110}
   m_Father: {fileID: 1049643945}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -344.99994, y: -220}
-  m_SizeDelta: {x: -690, y: -1087.9486}
+  m_AnchorMin: {x: 0, y: 0.22233048}
+  m_AnchorMax: {x: 0.13625, y: 0.3275043}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: -0.000061035156, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416726891
 MonoBehaviour:
@@ -1456,7 +1456,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c36b34e01c00b9a4a92fbe5e8bbc0749, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2358,10 +2358,10 @@ RectTransform:
   - {fileID: 1813744369}
   m_Father: {fileID: 1049643945}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -344.99997, y: 110}
-  m_SizeDelta: {x: -689.99994, y: -1087.9486}
+  m_AnchorMin: {x: 0, y: 0.56}
+  m_AnchorMax: {x: 0.13625, y: 0.66416526}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &625442123
 MonoBehaviour:
@@ -2396,7 +2396,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c36b34e01c00b9a4a92fbe5e8bbc0749, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2850,7 +2850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &705930768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6452,7 +6452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1272569828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8059,7 +8059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1602556541
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8976,7 +8976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1778925991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10794,6 +10794,7 @@ GameObject:
   - 114: {fileID: 1813744371}
   - 114: {fileID: 1813744370}
   - 114: {fileID: 1813744373}
+  - 114: {fileID: 1813744374}
   m_Layer: 5
   m_Name: 1 - vulcan
   m_TagString: Untagged
@@ -10920,6 +10921,18 @@ MonoBehaviour:
   weaponType: 0
   iconImage: {fileID: 87384644}
   weaponDamage: 10
+--- !u!114 &1813744374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1813744368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &1815803047
 GameObject:
   m_ObjectHideFlags: 0
