@@ -447,7 +447,7 @@ RectTransform:
   - {fileID: 2129518497}
   - {fileID: 406406984}
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 11
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -90, y: -70}
@@ -1182,7 +1182,7 @@ RectTransform:
   m_Children:
   - {fileID: 534200527}
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -20, y: -20}
@@ -2504,6 +2504,8 @@ GameObject:
   - 224: {fileID: 653231770}
   - 222: {fileID: 653231769}
   - 114: {fileID: 653231768}
+  - 114: {fileID: 653231772}
+  - 114: {fileID: 653231771}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2561,12 +2563,40 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 23}
-  m_SizeDelta: {x: -600, y: 50}
+  m_AnchorMax: {x: 1, y: 0.10334762}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &653231771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653231767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &653231772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653231767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 4, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &661221160 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: da7e9e072ccd1c34887992a4471bc9bf, type: 3}
@@ -2667,7 +2697,6 @@ MonoBehaviour:
   slutPosition: {fileID: 1808553050}
   spawnPointsScript: {fileID: 1825824923}
   liv: 20
-  score: 0
   valgteObjektType: 1
   highscoreScript: {fileID: 1568557801}
   environmentRoot: {fileID: 1220719776}
@@ -5556,7 +5585,7 @@ RectTransform:
   m_Children:
   - {fileID: 1293564735}
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5651,13 +5680,13 @@ RectTransform:
   - {fileID: 178681616}
   - {fileID: 416726890}
   - {fileID: 156549523}
+  - {fileID: 107624476}
   - {fileID: 653231770}
   - {fileID: 2062348352}
   - {fileID: 1568557800}
   - {fileID: 1041462332}
   - {fileID: 378925981}
   - {fileID: 1972159676}
-  - {fileID: 107624476}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
@@ -7567,7 +7596,7 @@ RectTransform:
   - {fileID: 2012073706}
   - {fileID: 1576412676}
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -7768,7 +7797,7 @@ MonoBehaviour:
   sceneController: {fileID: 668469989}
   weaponType: 1
   iconImage: {fileID: 744301450}
-  weaponDamage: 50
+  weaponDamage: 20
 --- !u!114 &1576159557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8769,7 +8798,7 @@ MonoBehaviour:
   sceneController: {fileID: 668469989}
   weaponType: 2
   iconImage: {fileID: 905562676}
-  weaponDamage: 4
+  weaponDamage: 1
 --- !u!114 &1676978000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10920,7 +10949,7 @@ MonoBehaviour:
   sceneController: {fileID: 668469989}
   weaponType: 0
   iconImage: {fileID: 87384644}
-  weaponDamage: 10
+  weaponDamage: 5.5
 --- !u!114 &1813744374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11474,7 +11503,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 710, y: -161}
@@ -11883,7 +11912,7 @@ MonoBehaviour:
   sceneController: {fileID: 668469989}
   weaponType: 3
   iconImage: {fileID: 828526223}
-  weaponDamage: 50
+  weaponDamage: 2.5
 --- !u!114 &2053999115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11924,7 +11953,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1049643945}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 356.00003, y: 243}

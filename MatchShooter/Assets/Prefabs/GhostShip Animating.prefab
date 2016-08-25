@@ -211,6 +211,7 @@ MonoBehaviour:
   hastighed: 0.1
   shouldRotate: 0
   shouldScale: 0
+  weakAgainstWeaponType: 3
   icon: {fileID: 21300000, guid: 6d2359eb1aa69f54db1cc009d79a5c02, type: 3}
   rotation: {x: 0, y: 0, z: 0}
   objekt: {fileID: 162320}
@@ -1764,6 +1765,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: fadeInTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: weakAgainstWeaponType
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -183,6 +183,8 @@ MonoBehaviour:
   hastighed: 0.1
   shouldRotate: 0
   shouldScale: 0
+  weakAgainstWeaponType: 3
+  icon: {fileID: 0}
   rotation: {x: 0, y: 0, z: 0}
   objekt: {fileID: 170354}
   minType: 3

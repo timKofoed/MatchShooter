@@ -13,9 +13,10 @@ public enum ObjektType
 
 public enum WeaponType
 {
+    none = -1,
     vulcan = 0,
-    nr2 = 1,
-    nr3 = 2,
+    pulse = 1,
+    lightning = 2,
     flamer = 3
 }
 
@@ -38,7 +39,7 @@ public class SceneController : MonoBehaviour {
 
     public EnemySpawnPoints spawnPointsScript;
     public int liv = 5;
-    public int score = 0;
+    private int score = 0;
     public ObjektType valgteObjektType = ObjektType.objekt1;
     public HighScoreScript highscoreScript;
 
@@ -90,6 +91,8 @@ public class SceneController : MonoBehaviour {
     private float gunTransition = -1.0f; //en værdi vi bruger til at holde styr på hvor langt våbnet har drejet imod objektet (bruges af en Lerp)
     private GunController gunController;
 
+    private WeaponType selectedWeapon = WeaponType.vulcan;
+
     // Use this for initialization
     void Start () {
         RestartLevel();
@@ -127,6 +130,16 @@ public class SceneController : MonoBehaviour {
     public void SetDamagePotential(float damage)
     {
         gunController.SetDamagePotential(damage);
+    }
+
+    public WeaponType GetSelectedWeapon()
+    {
+        return selectedWeapon;
+    }
+
+    public void AddToScore(int addScore)
+    {
+        score += addScore;
     }
 
     float contourFlare = 0.0f;
@@ -210,16 +223,17 @@ public class SceneController : MonoBehaviour {
 	
     public void SaetValgtVaaben(WeaponType valgtVaaben, ButtonChoose pressedButton)
     {
+        selectedWeapon = valgtVaaben;
         objekt1PreviewIcon.sprite = pressedButton.GetIcon();
         switch (valgtVaaben)
         {
             case WeaponType.vulcan:
                 F3DFXController.instance.DefaultFXType = F3DFXType.Vulcan;
                 break;
-            case WeaponType.nr2:
+            case WeaponType.pulse:
                 F3DFXController.instance.DefaultFXType = F3DFXType.PlasmaGun;
                 break;
-            case WeaponType.nr3:
+            case WeaponType.lightning:
                 F3DFXController.instance.DefaultFXType = F3DFXType.LightningGun;
                 break;
             case WeaponType.flamer:

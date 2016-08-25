@@ -12,6 +12,7 @@ public class ObjectController : MonoBehaviour {
     public bool shouldRotate = true;
     public bool shouldScale = true;
     private float healthAtStart = 0f;
+    public WeaponType weakAgainstWeaponType = WeaponType.none;
     [SerializeField]
     private Sprite icon;    // Det ikon som skal vises på UI når dette element bliver vist
 
@@ -125,7 +126,14 @@ public class ObjectController : MonoBehaviour {
 
     public void TagSkade(float skade)
     {
-        health -= skade;
+        if (controller.GetSelectedWeapon() == weakAgainstWeaponType)
+        {
+            health -= skade * 2.0f;
+        }
+        else
+        {
+            health -= skade;
+        }
 
         //if (healthBar != null)
         //    healthBar.transform.localScale = new Vector3(1f, health / healthAtStart, 1f);
@@ -134,6 +142,7 @@ public class ObjectController : MonoBehaviour {
         {
             controller.EnemyReceivedDamage(icon, 0f);
             controller.RemoveObject(this.gameObject);
+            controller.AddToScore(5);
         }
         else
         {

@@ -40,6 +40,7 @@ public class F3DFlameThrower : MonoBehaviour
     // Hvis vi bruger en flammekaster (et våben som bruger et partikel system)
     void OnParticleCollision(GameObject other)
     {
+        //Debug.Log("Flamer");
         GunController.TargetHit(other);
 
         /*int safeLength = part.GetSafeCollisionEventSize();
