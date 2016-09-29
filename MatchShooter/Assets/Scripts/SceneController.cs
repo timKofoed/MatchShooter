@@ -20,8 +20,20 @@ public enum WeaponType
     flamer = 3
 }
 
+public enum ShopItem
+{
+	vulcan = 0,
+	pulse = 1,
+	lightning = 2,
+	flamer = 3,
+	life = 4
+}
+
 public class SceneController : MonoBehaviour {
-    [System.Serializable]
+    
+	public static SceneController instance;
+
+	[System.Serializable]
     public struct FaldendeObjekt
     {
         public float spawnChange;
@@ -84,7 +96,7 @@ public class SceneController : MonoBehaviour {
 
     public Button pressToStart;
 
-    public GameObject playerGun;
+    public GameObject playerGun, shopHolder;
     public Transform playerGunLookAt;
     private GameObject objectToLookAt;  //Gem en reference til det fallende objekt som våbnet skal kigge på
     private Quaternion gunPreviousOrientation; //Husk hvor våbnet pegede hen før vi startede med at dreje det
@@ -95,6 +107,7 @@ public class SceneController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		instance = this;
         RestartLevel();
         Debug.Log("Time.fixedDeltaTime: " + Time.fixedDeltaTime);
 
@@ -125,6 +138,16 @@ public class SceneController : MonoBehaviour {
 
         // Quick-fix, so the initial weapon has proper damage, before we press any of the buttons in the side
         SetDamagePotential(10.0f);
+
+		knap1.GetComponent<Image> ().color = new Color (1f, 1f, 1f, 0.3f);
+		knap2.GetComponent<Image> ().color = new Color (0.259f, 0.259f, 0.259f, 0.3f);
+		knap3.GetComponent<Image> ().color = new Color (0.259f, 0.259f, 0.259f, 0.3f);
+		knap4.GetComponent<Image> ().color = new Color (0.259f, 0.259f, 0.259f, 0.3f);
+
+		knap1.GetComponent<Button> ().interactable = true;
+		knap2.GetComponent<Button> ().interactable = false;
+		knap3.GetComponent<Button> ().interactable = false;
+		knap4.GetComponent<Button> ().interactable = false;
     }
 
     public void SetDamagePotential(float damage)
@@ -211,15 +234,91 @@ public class SceneController : MonoBehaviour {
             return true;
     }
 
-    public void PauseKnapTrykket()
+	public void PauseKnapTrykket(int pauseState = -1)
     {
-        // Hvis tiden går hurtigere end "meget langsom", så stop tiden
-        if (Time.timeScale > 0.0f)
-            Time.timeScale = 0.0f;
-        else //...ellers sæt tiden tilbage til standarden
-            Time.timeScale = 1.0f;
+		if (pauseState < 0) 
+		{
+			// Hvis tiden går hurtigere end "meget langsom", så stop tiden
+			if (Time.timeScale > 0.0f)
+				Time.timeScale = 0.0f;
+			else //...ellers sæt tiden tilbage til standarden
+				Time.timeScale = 1.0f;
+		}
+		else if(pauseState == 0)
+		{
+			Time.timeScale = 0.0f;
+		}
+		else
+		{
+			Time.timeScale = 1.0f;
+		}
         
     }
+
+	public void GotoShop()
+	{
+		PauseKnapTrykket (0);
+		shopHolder.SetActive (true);
+	}
+
+	public void CloseShop()
+	{
+		PauseKnapTrykket (1);
+		shopHolder.SetActive (false);
+	}
+
+	public bool PurchaseItem(ShopItem item, int cost)
+	{
+		Debug.Log ("køb ("+item+"), cost: " + cost);
+		if ((score >= cost) && (liv < startLiv)) 
+		{
+			Debug.Log ("Ja");
+			score -= cost;
+			switch (item) 
+			{
+			case ShopItem.life:
+				liv += 5;
+				liv = (liv > startLiv)?startLiv:liv;
+				break;
+				default:
+					Debug.Log ("unknown!");
+				break;
+			}
+			return true;
+		} 
+		else
+			return false;
+	}
+
+	public bool PurchaseGun(WeaponType gun, int cost)
+	{
+		if (score >= cost) 
+		{
+			score -= cost;
+			switch (gun) {
+			case WeaponType.vulcan:
+				knap1.GetComponent<Image> ().color = new Color (1f, 1f, 1f, 0.3f);
+				knap1.GetComponent<Button> ().interactable = true;
+				break;
+			case WeaponType.pulse:
+				knap2.GetComponent<Image> ().color = new Color (1f, 1f, 1f, 0.3f);
+				knap2.GetComponent<Button> ().interactable = true;
+				break;
+			case WeaponType.lightning:
+				knap3.GetComponent<Image> ().color = new Color (1f, 1f, 1f, 0.3f);
+				knap3.GetComponent<Button> ().interactable = true;
+				break;
+			case WeaponType.flamer:
+				knap4.GetComponent<Image> ().color = new Color (1f, 1f, 1f, 0.3f);
+				knap4.GetComponent<Button> ().interactable = true;
+				break;
+			default:
+				break;
+			}
+			return true;
+		} else
+			return false;
+	}
 	
     public void SaetValgtVaaben(WeaponType valgtVaaben, ButtonChoose pressedButton)
     {

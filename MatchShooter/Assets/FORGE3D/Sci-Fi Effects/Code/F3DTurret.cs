@@ -82,7 +82,7 @@ public class F3DTurret : MonoBehaviour
         Track();
 
         // Fire turret
-        if (!isFiring && Input.GetKeyDown(KeyCode.Mouse0))
+		if (!isFiring && Input.GetKeyDown(KeyCode.Mouse0) && Time.timeScale > 0.0f)
         {
             isFiring = true;
             F3DFXController.instance.Fire();

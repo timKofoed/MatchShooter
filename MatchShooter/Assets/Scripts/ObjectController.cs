@@ -193,7 +193,7 @@ public class ObjectController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         controller = GameObject.FindWithTag("sceneController").GetComponent<SceneController>();
-        int valgtType = Random.Range(0,4) + 1;
+        int valgtType = Random.Range(0,4);
         minType = (ObjektType)valgtType;
         mitMaterial = new Material( this.gameObject.GetComponentInChildren<Renderer>().material );
 
